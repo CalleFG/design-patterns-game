@@ -1,10 +1,15 @@
-Made by Carl Ericsson
+Made by Carl Ericsson.
 
---- What this project is about:
+About:
+Very boring shooter. Kill enemies to gain points and achievements.
+WASD to move, left click to shoot.
 
+Patterns used:
+- Singleton, in 'ScoreManager.cs'
+Used to keep track of the player's score and global access to it.
 
+- Component, in 'MovementComponent.cs' 
+Controls the players movement.
 
---- Patterns used in game:
-1.
-2.
-3.
+- Pool, in 'BulletPool.cs'. 
+Pools bullets for the player's weapon.
