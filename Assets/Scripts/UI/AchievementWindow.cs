@@ -1,17 +1,17 @@
 using System.Collections;
-using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class AchievementWindow : MonoBehaviour
 {
-    [SerializeField] private Text achievementNameText;
-    [SerializeField] private Text achievementFlavorText;
+    [SerializeField] private TextMeshProUGUI achievementNameText;
+    [SerializeField] private TextMeshProUGUI achievementDescriptionText;
     [SerializeField] private float fadeTime = 4.0f;
 
-    private void DisplayAchievement(Achievement achievement)
+    public void DisplayAchievement(Achievement achievement)
     {
-        achievementNameText.text = achievement.achievementName;
-        achievementFlavorText.text = achievement.flavorText;
+        achievementNameText.text = achievement.name;
+        achievementDescriptionText.text = achievement.description;
         ShowWindow();
         StartCoroutine(HideWindowTimer());
     }
