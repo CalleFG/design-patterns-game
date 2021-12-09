@@ -1,10 +1,7 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class Enemy : BaseEnemy, IDamageable
 {
-    [SerializeField] private float health = 10.0f;
-    [SerializeField] private int pointWorth = 1;
-    
     public void TakeDamage(float amount)
     {
         health -= amount;
@@ -12,6 +9,11 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             Die();
         }
+    }
+
+    public void Update()
+    {
+        transform.Translate(Vector3.forward * (Time.deltaTime * 1.0f));
     }
 
     private void Die()
