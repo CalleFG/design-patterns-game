@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach (Transform spawn in spawnPoints)
         {
-            BaseEnemy spawnedEnemy = factory.GetEnemy((EnemyType) Random.Range(1, 3), currentWave);
+            BaseEnemy spawnedEnemy = factory.GetEnemy((EnemyType) Random.Range(0, 3), currentWave);
             spawnedEnemy.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
         }
     }
@@ -37,8 +37,8 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(spawnTime);
         if (currentWave > maxWaves) yield break;
-        SpawnEnemies();
         currentWave++;
+        SpawnEnemies();
         StartCoroutine(WaveTimer());
     }
 }

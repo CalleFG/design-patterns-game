@@ -3,9 +3,9 @@ using UnityEngine;
 
 public enum EnemyType
 {
-    Weak = 1,
-    Normal = 2,
-    Boss = 3
+    Weak = 0,
+    Normal = 1,
+    Boss = 2
 }
 
 public class EnemyFactory : MonoBehaviour
@@ -21,12 +21,18 @@ public class EnemyFactory : MonoBehaviour
         {
             case EnemyType.Weak:
                 newEnemy = Instantiate(weakPrefab);
+                newEnemy.pointWorth = 1;
+                newEnemy.health = 10.0f;
                 break;
             case EnemyType.Normal:
                 newEnemy = Instantiate(normalPrefab);
+                newEnemy.pointWorth = 5;
+                newEnemy.health = 40.0f;
                 break;
             case EnemyType.Boss:
                 newEnemy = Instantiate(bossPrefab);
+                newEnemy.pointWorth = 15;
+                newEnemy.health = 100.0f;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);

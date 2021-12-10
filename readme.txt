@@ -17,4 +17,6 @@ Pools bullets for the player's weapon.
 BaseEnemy is the abstract class that is used by the EnemyFactory to instantiate enemies.
 Currently the EnemySpawner is using the factory to randomise enemies spawned.
 
-- 
+- Observer, in 'ScoreManager.cs' and 'ScorePanel.cs'.
+ScorePanel subscribes to the ScoreManager's event for UI updates.
+AchievementManager subscribes to ScoreManager for varius Achievement conditions.

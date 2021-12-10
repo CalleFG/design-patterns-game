@@ -4,9 +4,9 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     private static ScoreManager instance;
-    private static int points;
-    
-    public int Points => points;
+    private static int currentScore;
+
+    public event Action<int> onScoreUpdated;
 
     public static ScoreManager Instance
     {
@@ -14,7 +14,7 @@ public class ScoreManager : MonoBehaviour
         {
             if (instance == null)
             {
-                GameObject obj = new GameObject("Game Manager");
+                GameObject obj = new GameObject("Score Manager");
                 instance = obj.AddComponent<ScoreManager>();
             }
 
@@ -24,6 +24,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddPoints(int amount)
     {
-        points += amount;
+        currentScore += amount;
+        onScoreUpdated?.Invoke(currentScore);
     }
 }
