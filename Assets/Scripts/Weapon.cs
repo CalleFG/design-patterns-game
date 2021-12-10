@@ -14,7 +14,10 @@ public class Weapon : MonoBehaviour
     public void Fire()
     {
         Bullet newBullet = pool.GetBullet();
-        newBullet.transform.SetPositionAndRotation(transform.position, transform.rotation);
-        newBullet.ActivateBullet();
+        if (newBullet != null)
+        {
+            newBullet.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            newBullet.ActivateBullet();
+        }
     }
 }

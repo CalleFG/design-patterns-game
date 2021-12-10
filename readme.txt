@@ -3,8 +3,8 @@ Made by Carl Ericsson.
 About:
 Very boring shooter. Kill enemies to gain points and achievements.
 Enemies spawn in a wave every 10 seconds.
-Last wave is a boss wave.
 WASD to move, left click to shoot.
+You can undo your movement by holding F.
 
 Patterns used:
 - Singleton, in 'ScoreManager.cs'
@@ -20,3 +20,7 @@ Currently the EnemySpawner is using the factory to randomise enemies spawned.
 - Observer, in 'ScoreManager.cs' and 'ScorePanel.cs'.
 ScorePanel subscribes to the ScoreManager's event for UI updates.
 AchievementManager subscribes to ScoreManager for varius Achievement conditions.
+
+- Command, in 'Command.cs', 'CommandProcessor.cs', 'MoveCommand.cs'.
+Saves the players move commands.
+In this game undoing doesn't really serve any purpose.

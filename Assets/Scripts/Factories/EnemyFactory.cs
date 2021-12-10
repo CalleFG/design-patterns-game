@@ -20,24 +20,26 @@ public class EnemyFactory : MonoBehaviour
         switch (type)
         {
             case EnemyType.Weak:
-                newEnemy = Instantiate(weakPrefab);
-                newEnemy.pointWorth = 1;
-                newEnemy.health = 10.0f;
+                newEnemy = CreateEnemy(weakPrefab, 1, 10.0f);
                 break;
             case EnemyType.Normal:
-                newEnemy = Instantiate(normalPrefab);
-                newEnemy.pointWorth = 5;
-                newEnemy.health = 40.0f;
+                newEnemy = CreateEnemy(normalPrefab, 5, 40.0f);
                 break;
             case EnemyType.Boss:
-                newEnemy = Instantiate(bossPrefab);
-                newEnemy.pointWorth = 15;
-                newEnemy.health = 100.0f;
+                newEnemy = CreateEnemy(bossPrefab, 15, 100.0f);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
         newEnemy.ScaleLevel(level);
+        return newEnemy;
+    }
+
+    private BaseEnemy CreateEnemy(BaseEnemy prefab, int pointWorth, float health)
+    {
+        BaseEnemy newEnemy = Instantiate(prefab);
+        newEnemy.pointWorth = pointWorth;
+        newEnemy.health = health;
         return newEnemy;
     }
 }

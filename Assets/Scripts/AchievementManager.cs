@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public struct Achievement
@@ -13,19 +12,25 @@ public class AchievementManager : MonoBehaviour
 
     private Achievement[] availableAchievements;
 
-    private Achievement testAchi;
-
     private void Awake()
     {
-        testAchi = new Achievement
+        // Would've liked to use an external .css/.json file to fill out achievements.
+        // However I don't know how to do that in unity.
+        availableAchievements = new Achievement[2];
+        availableAchievements[0] = new Achievement
         {
-            name = "Test Achievement",
-            description = "Cool test description."
+            name = "Earned one point.",
+            description = "You just earned your first point."
+        };
+        availableAchievements[1] = new Achievement
+        {
+            name = "Fifty points!",
+            description = "You have earned fifty points."
         };
     }
 
-    private void ShowAchievementMessage()
+    private void ShowAchievementMessage(int achievementID)
     {
-        achievementWindow.DisplayAchievement(testAchi);
+        achievementWindow.DisplayAchievement(availableAchievements[achievementID]);
     }
 }
