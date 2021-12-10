@@ -20,25 +20,25 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        SpawnEnemies();
+        SpawnWave();
         StartCoroutine(WaveTimer());
     }
 
-    private void SpawnEnemies()
+    private void SpawnWave()
     {
         foreach (Transform spawn in spawnPoints)
         {
             BaseEnemy spawnedEnemy = factory.GetEnemy((EnemyType) Random.Range(0, 3), currentWave);
             spawnedEnemy.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
         }
+        currentWave++;
     }
     
     private IEnumerator WaveTimer()
     {
         yield return new WaitForSeconds(spawnTime);
         if (currentWave > maxWaves) yield break;
-        currentWave++;
-        SpawnEnemies();
+        SpawnWave();
         StartCoroutine(WaveTimer());
     }
 }

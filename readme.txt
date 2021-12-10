@@ -2,7 +2,7 @@ Made by Carl Ericsson.
 
 About:
 Very boring shooter. Kill enemies to gain points and achievements.
-Enemies spawn in a wave every 10 seconds.
+Enemies spawn in waves every 10 seconds.
 WASD to move, left click to shoot.
 You can undo your movement by holding F.
 

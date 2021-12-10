@@ -27,6 +27,8 @@ public class AchievementManager : MonoBehaviour
             name = "Fifty points!",
             description = "You have earned fifty points."
         };
+
+        ScoreManager.Instance.onAchievement += ShowAchievementMessage;
     }
 
     private void ShowAchievementMessage(int achievementID)

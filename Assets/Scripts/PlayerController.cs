@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class MovementComponent : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 100.0f;
     
     private Weapon weaponComponent;
     private CommandProcessor commandProcessor;
     private Vector3 movementInput;
-    private bool undoing = false;
+    private bool undoing;
 
     private void Awake()
     {
@@ -17,8 +17,7 @@ public class MovementComponent : MonoBehaviour
 
     void Update()
     {
-        movementInput.x =  Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
-        movementInput.z = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+        GatherMovementInput();
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -28,14 +27,19 @@ public class MovementComponent : MonoBehaviour
         undoing = Input.GetKey(KeyCode.F);
     }
 
+    private void GatherMovementInput()
+    {
+        movementInput.x = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
+        movementInput.z = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+    }
+
     private void FixedUpdate()
     {
         if (undoing)
         {
             commandProcessor.Undo();
-            return;
         }
-        if (movementInput != Vector3.zero)
+        else if (movementInput != Vector3.zero)
         {
             MoveCommand moveCommand = new MoveCommand(gameObject, movementInput);
             commandProcessor.ExecuteCommand(moveCommand);

@@ -26,7 +26,7 @@ public class EnemyFactory : MonoBehaviour
                 newEnemy = CreateEnemy(normalPrefab, 5, 40.0f);
                 break;
             case EnemyType.Boss:
-                newEnemy = CreateEnemy(bossPrefab, 15, 100.0f);
+                newEnemy = CreateEnemy(bossPrefab, 10, 80.0f);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
