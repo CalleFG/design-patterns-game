@@ -5,34 +5,33 @@ public class BulletPool : MonoBehaviour
 {
     [SerializeField] private int poolAmount = 30;
     [SerializeField] private Bullet poolObject;
-    private List<Bullet> pooledBullets;
+
+    private Queue<Bullet> bulletQueue;
     
     private void Start()
     {
         InitializePool();
     }
 
-    public Bullet GetBullet()
+    public Bullet SpawnBullet(Vector3 position, Quaternion rotation)
     {
-        foreach (Bullet obj in pooledBullets)
-        {
-            if (!obj.gameObject.activeInHierarchy)
-            {
-                return obj;
-            }
-        }
+        Bullet newBullet = bulletQueue.Dequeue();
+        newBullet.ActivateBullet();
+        newBullet.transform.SetPositionAndRotation(position, rotation);
+        
+        bulletQueue.Enqueue(newBullet);
 
-        return null;
+        return newBullet;
     }
     
     private void InitializePool()
     {
-        pooledBullets = new List<Bullet>(poolAmount);
+        bulletQueue = new Queue<Bullet>(poolAmount);
         for (int i = 0; i < poolAmount; i++)
         {
             Bullet newBullet = Instantiate(poolObject);
             newBullet.gameObject.SetActive(false);
-            pooledBullets.Add(newBullet);
+            bulletQueue.Enqueue(newBullet);
         }
     }
 }

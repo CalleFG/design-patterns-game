@@ -13,11 +13,7 @@ public class Weapon : MonoBehaviour
 
     public void Fire()
     {
-        Bullet newBullet = pool.GetBullet();
-        if (newBullet != null)
-        {
-            newBullet.transform.SetPositionAndRotation(transform.position, transform.rotation);
-            newBullet.ActivateBullet();
-        }
+        Transform cacheTransform = transform;
+        pool.SpawnBullet(cacheTransform.position, cacheTransform.rotation);
     }
 }

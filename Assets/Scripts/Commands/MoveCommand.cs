@@ -16,7 +16,6 @@ public class MoveCommand : Command
 
     public override void Undo()
     {
-        direction *= -1;
-        gameObject.transform.Translate(direction);
+        gameObject.transform.Translate(direction * -1);
     }
 }
